@@ -37,6 +37,18 @@ Therefore, the distance between the hyperplane and the support vectors is:
 
 For a support vector, |w<sub>0</sub><sup>T</sup>x<sub>i</sub>| = 1. Therefore, margin = 1/||w<sub>0</sub>||, so we must maximize the total margin (2/||w<sub>0</sub>||), or minimize ||w<sub>0</sub>||, in order to find the optimal hyperplane decision boundary given the condition y<sub>i</sub>(w<sub>0</sub><sup>T</sup>x<sub>i</sub>) > 1.
 
+Minimizing ||w<sub>0</sub>||
+---
+Let's play a math trick, the reason for which will be apparent later. Instead of minimizing ||w<sub>0</sub>||, let's minimize 0.5*||w<sub>0</sub>||<sup>2</sup>. This is now a quadratic function to be optimized according to the y<sub>i</sub>(w<sub>0</sub><sup>T</sup>x<sub>i</sub>) > 1 boundary condition. Since the boundary condition only considers the support vectors, the final two equations become:
 
+Minimize (f): 0.5*||w<sub>0</sub>||<sup>2</sup>
+Condition (g): y<sub>i</sub>(w•x<sub>i</sub>) – b = 1
 
-While neural networks taken all points into account in optimizing the decision boundary in a classification problem, SVM only considers the points closest to the decision boundary.
+Note that we are minimizing a quadratic, which is a paraboloid with a guaranteed single, convex global minimum. This set of equations can be solved analytically with the Lagrangian multipler method (not discussed here).
+
+Kernel Trick
+---
+The above only works and guarantees an optimal solution if the problem is linearly separable. If not, then we need to transform the space to make it linearly separable. But won't this make everything a mess, because we have to compute (k(x<sub>i</sub>)•k(x<sub>j</sub>)) instead of the normal dot product (x<sub>i</sub>•x<sub>j</sub>)? Nope, turns out you only need to compute K(x<sub>i</sub>•x<sub>j</sub>)! Therefore, the kernel function can be highly complex without significant computational consequences. Typical kernel functions include:
+- polynomial
+- radial (polar coordinates)
+- sigmoid
