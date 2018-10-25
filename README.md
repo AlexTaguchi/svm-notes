@@ -4,6 +4,7 @@ Notes on how SVM works
 Good resources
 ---
 http://web.mit.edu/6.034/wwwbob/svm-notes-long-08.pdf
+https://www.quantstart.com/articles/Support-Vector-Machines-A-Guide-for-Beginners
 
 Definitions
 ---
